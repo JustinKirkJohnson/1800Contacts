@@ -1,65 +1,87 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Justin._1800Contacts.Api.Interface;
+using Justin._1800Contacts.Api.Sorting;
 
 namespace Justin._1800Contacts.Api.Logic
 {
     public class ClassLogic : IClassLogic
     {
 
-        public List<string> SortByPrerequisite(List<string> classDependencyList)
+	    private readonly ISorter _sorter;
+
+	    public ClassLogic() : this(new TopologicalSorter()) { }
+
+	    public ClassLogic(ISorter sorter)
+	    {
+		    _sorter = sorter;
+	    }
+
+	    public string SayHi()
+	    {
+		    return "Hello there!";
+	    }
+
+        public IEnumerable<string> SortByPrerequisite(IList<string> classDependencyList)
         {
-            List<string> sortedClassDependencyList = new List<string>();
-            Dictionary<string, string> classDependencyMappingDictionary = 
-                new Dictionary<string, string>();
 
-            foreach (string classDependencyMapping in classDependencyList)
-            {
-                string[] classDependencyMappingComponents = 
-                    classDependencyMapping.Split(':');
+			List<ClassItem> primaryClassItems = new List<ClassItem>();
+			List<ClassItem> dependentClassItems = new List<ClassItem>();
 
-                string targetClass = classDependencyMappingComponents[0].Trim();
-                string prerequisiteClass = null;
-                if (classDependencyMappingComponents.Count() > 1)
-                {
-                    prerequisiteClass = classDependencyMappingComponents[1].Trim();
-                }
+			Dictionary<string, ClassItem> uniqueClassItemsDictionary =
+				new Dictionary<string, ClassItem>();
 
-                classDependencyMappingDictionary.Add(targetClass, prerequisiteClass);
-            }
+			// Parse the list that was provided into ClassItem's
+	        foreach (string classDependencyMapping in classDependencyList)
+	        {
+		        string[] classDependencyMappingComponents =
+			        classDependencyMapping.Split(':');
 
-            // TODO: validate that all indicated dependencies have been specified as target classes
+				ClassItem classItem = ResolveClassItem(classDependencyMappingComponents[0], uniqueClassItemsDictionary);
+				primaryClassItems.Add(classItem);
 
-            foreach (string targetClass in classDependencyMappingDictionary.Keys)
-            {
-                // TODO: pull into recursive method
-                string prerequisiteClass = classDependencyMappingDictionary[targetClass];
-                if (prerequisiteClass == null)
-                {
-                    sortedClassDependencyList.Insert(0, targetClass);
-                    continue;
-                }
+		        if (classDependencyMappingComponents.Count() > 1 &&
+					!string.IsNullOrEmpty(classDependencyMappingComponents[1]))
+		        {
+					ClassItem dependentClassItem = ResolveClassItem(classDependencyMappingComponents[1], uniqueClassItemsDictionary);
+					dependentClassItems.Add(dependentClassItem);
+					classItem.SetDependencies(dependentClassItem);
+		        }
+	        }
 
-                int prerequisiteIndex = 
-                    sortedClassDependencyList.FindIndex(
-                        classItem => classItem == prerequisiteClass);
+			// Validate that no prerequisites were specified that weren't provided as base classes
+			IEnumerable<ClassItem> orphanedClassItems = dependentClassItems.Except(primaryClassItems, new SortItemEqualityComparer<ClassItem>()).ToList();
+	        if (orphanedClassItems.Any())
+	        {
+				throw new DependencyException<ClassItem>(string.Format("Invalid class prerequisites: {0}", 
+					string.Join(", ", orphanedClassItems.Select(item => item.Name))), orphanedClassItems.ToArray());
+	        }
 
-                if (prerequisiteIndex == -1)
-                {
-                    sortedClassDependencyList.Add(targetClass);
-                }
-                else
-                {
-                    sortedClassDependencyList.Insert(prerequisiteIndex, targetClass);
-                }
+			// Sort ClassItem's based on the dependencies provided
+			return _sorter.Sort(uniqueClassItemsDictionary.Values, item => item.Dependencies).Select(item => item.Name);
 
-            }
-
-            return sortedClassDependencyList;
         }
+
+		private ClassItem ResolveClassItem(string classTitle, Dictionary<string, ClassItem> uniqueSortItemsDictionary)
+	    {
+			ClassItem sortItem;
+			string targetClassTitle = classTitle.Trim();
+			if (uniqueSortItemsDictionary.ContainsKey(targetClassTitle))
+			{
+				sortItem = uniqueSortItemsDictionary[targetClassTitle];
+			}
+			else
+			{
+				sortItem = new ClassItem(targetClassTitle);
+				uniqueSortItemsDictionary[targetClassTitle] = sortItem;
+			}
+
+			return sortItem;
+	    }
 
     }
 }

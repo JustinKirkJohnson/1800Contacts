@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Justin._1800Contacts.Api.Interface
 {
-    public interface IClassLogic
-    {
+	public interface ISorter
+	{
 
-	    string SayHi();
-		IEnumerable<string> SortByPrerequisite(IList<string> classDependencyList);
+		IList<T> Sort<T>(IEnumerable<T> source, Func<T, IEnumerable<T>> getDependencies, IEqualityComparer<T> comparer = null);
 
-    }
+	}
 }
