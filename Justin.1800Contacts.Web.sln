@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Justin.1800Contacts.Web", "Justin.1800Contacts.Web\Justin.1800Contacts.Web.csproj", "{21A6D052-A1BC-408F-B143-7376E4A6DF98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Justin.1800Contacts.Api", "Justin.1800Contacts.Api\Justin.1800Contacts.Api.csproj", "{3E795180-E307-4878-9061-63AAD9B92C82}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Justin.1800Contacts.Api.Test", "Justin.1800Contacts.Api.Test\Justin.1800Contacts.Api.Test.csproj", "{E75F39D0-4F18-4A02-BAD1-A00C4002F186}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{76B239F4-F77A-4D5D-917E-F7F8069A153E}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{76B239
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Justin.1800Contacts.Logic", "Justin.1800Contacts.Logic\Justin.1800Contacts.Logic.csproj", "{B4B357D1-5F83-455F-9BE3-64D25E0118F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Justin.1800Contacts.Logic.Tests", "Justin.1800Contacts.Logic.Tests\Justin.1800Contacts.Logic.Tests.csproj", "{465FE391-022A-4DEE-94B5-E6DD5AF73DEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Justin.1800Contacts.App", "Justin.1800Contacts.App\Justin.1800Contacts.App.csproj", "{8F377430-5F79-41A8-9813-85CBF13F3657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,10 +34,18 @@ Global
 		{3E795180-E307-4878-9061-63AAD9B92C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E795180-E307-4878-9061-63AAD9B92C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E795180-E307-4878-9061-63AAD9B92C82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E75F39D0-4F18-4A02-BAD1-A00C4002F186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E75F39D0-4F18-4A02-BAD1-A00C4002F186}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E75F39D0-4F18-4A02-BAD1-A00C4002F186}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E75F39D0-4F18-4A02-BAD1-A00C4002F186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B357D1-5F83-455F-9BE3-64D25E0118F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B357D1-5F83-455F-9BE3-64D25E0118F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B357D1-5F83-455F-9BE3-64D25E0118F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B357D1-5F83-455F-9BE3-64D25E0118F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{465FE391-022A-4DEE-94B5-E6DD5AF73DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{465FE391-022A-4DEE-94B5-E6DD5AF73DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{465FE391-022A-4DEE-94B5-E6DD5AF73DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{465FE391-022A-4DEE-94B5-E6DD5AF73DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F377430-5F79-41A8-9813-85CBF13F3657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F377430-5F79-41A8-9813-85CBF13F3657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F377430-5F79-41A8-9813-85CBF13F3657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F377430-5F79-41A8-9813-85CBF13F3657}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

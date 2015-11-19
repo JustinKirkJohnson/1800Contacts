@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Justin._1800Contacts.Api.Interface;
+using Justin._1800Contacts.Logic.Interface;
 
-namespace Justin._1800Contacts.Api.Sorting
+namespace Justin._1800Contacts.Logic.Sorting
 {
 	public class TopologicalSorter : ISorter
 	{

@@ -175,6 +175,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -188,7 +191,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Controllers\application.js" />
+    <Content Include="Scripts\Controllers\class-controllers.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -217,6 +223,10 @@
     <ProjectReference Include="..\Justin.1800Contacts.Api\Justin.1800Contacts.Api.csproj">
       <Project>{3e795180-e307-4878-9061-63aad9b92c82}</Project>
       <Name>Justin.1800Contacts.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Justin.1800Contacts.Logic\Justin.1800Contacts.Logic.csproj">
+      <Project>{b4b357d1-5f83-455f-9be3-64d25e0118f0}</Project>
+      <Name>Justin.1800Contacts.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

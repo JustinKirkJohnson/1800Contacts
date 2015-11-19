@@ -11,7 +11,12 @@ namespace Justin._1800Contacts.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+			bundles.Add(new ScriptBundle("~/bundles/classSchedule").Include(
+						"~/Scripts/angular.js",
+						"~/Scripts/Controllers/application.js",
+						"~/Scripts/Controllers/class-controllers.js"));
+
+			// Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));

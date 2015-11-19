@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Justin._1800Contacts.Api.Interface;
+using Justin._1800Contacts.Logic.Interface;
 
 namespace Justin._1800Contacts.Api.Controllers
 {
@@ -17,13 +17,6 @@ namespace Justin._1800Contacts.Api.Controllers
 		public ClassController(IClassLogic classLogic)
 		{
 			_classLogic = classLogic;
-		}
-
-		[HttpGet]
-		[Route("sayHi")]
-		public string SayHi()
-		{
-			return _classLogic.SayHi();
 		}
 
 		[HttpPost]

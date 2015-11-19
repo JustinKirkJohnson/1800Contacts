@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
-using Justin._1800Contacts.Api.Interface;
-using Justin._1800Contacts.Api.Logic;
-using Justin._1800Contacts.Api.Sorting;
+using Justin._1800Contacts.Logic.Class;
+using Justin._1800Contacts.Logic.Interface;
+using Justin._1800Contacts.Logic.Sorting;
 using Microsoft.Practices.Unity;
 
 namespace Justin._1800Contacts.Web

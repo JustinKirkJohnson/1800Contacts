@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Justin._1800Contacts.Api.Interface;
-using Justin._1800Contacts.Api.Sorting;
+using Justin._1800Contacts.Logic.Interface;
+using Justin._1800Contacts.Logic.Sorting;
 
-namespace Justin._1800Contacts.Api.Logic
+namespace Justin._1800Contacts.Logic.Class
 {
     public class ClassLogic : IClassLogic
     {
@@ -19,11 +15,6 @@ namespace Justin._1800Contacts.Api.Logic
 	    public ClassLogic(ISorter sorter)
 	    {
 		    _sorter = sorter;
-	    }
-
-	    public string SayHi()
-	    {
-		    return "Hello there!";
 	    }
 
         public IEnumerable<string> SortByPrerequisite(IList<string> classDependencyList)
@@ -38,6 +29,12 @@ namespace Justin._1800Contacts.Api.Logic
 			// Parse the list that was provided into ClassItem's
 	        foreach (string classDependencyMapping in classDependencyList)
 	        {
+		        if (string.IsNullOrEmpty(classDependencyMapping) ||
+					string.IsNullOrWhiteSpace(classDependencyMapping))
+		        {
+			        continue;
+		        }
+
 		        string[] classDependencyMappingComponents =
 			        classDependencyMapping.Split(':');
 
@@ -45,7 +42,8 @@ namespace Justin._1800Contacts.Api.Logic
 				primaryClassItems.Add(classItem);
 
 		        if (classDependencyMappingComponents.Count() > 1 &&
-					!string.IsNullOrEmpty(classDependencyMappingComponents[1]))
+					!string.IsNullOrEmpty(classDependencyMappingComponents[1]) &&
+					!string.IsNullOrWhiteSpace(classDependencyMappingComponents[1]))
 		        {
 					ClassItem dependentClassItem = ResolveClassItem(classDependencyMappingComponents[1], uniqueClassItemsDictionary);
 					dependentClassItems.Add(dependentClassItem);
